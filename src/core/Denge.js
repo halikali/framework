@@ -22,13 +22,13 @@ export const Denge = (userRoutes) => {
     document.querySelector("#root").innerHTML = matchedRoute.route.page();
   };
 
+   const changeRouterLink = (event) => {
+    event.preventDefault();
+    navigateToUrl(event.target.href);
+  }
+
   document.addEventListener("DOMContentLoaded", () => {
-    document.body.addEventListener("click", (event) => {
-      if (event.target.matches("[data-router-link]")) {
-        event.preventDefault();
-        navigateToUrl(event.target.href);
-      }
-    });
+    document.querySelectorAll("[data-router-link]").forEach(routerLink => routerLink.addEventListener("click", changeRouterLink))
     routerView();
   });
 
